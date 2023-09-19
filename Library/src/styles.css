@@ -1,0 +1,15 @@
+@import "~@ng-select/ng-select/themes/material.theme.css";
+
+.iconsColumn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap:1rem
+  }
+
+  .trash-icon {
+    display: inline-block;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }

@@ -1,0 +1,12 @@
+<h1 class="mb-3">Edytuj kategorię</h1>
+<form #form="ngForm" (ngSubmit)="editCategory()">
+    <div class="mb-3">
+        <label for="title" class="form-label">Nazwa</label>
+        <input type="text" class="form-control" id="name" [(ngModel)]="category.name" name="name">
+    </div>
+    <div class="mb-3">
+        <label for="title" class="form-label">Zdjęcie</label>
+        <input type="text" class="form-control" id="image" [(ngModel)]="category.image" name="image">
+    </div>
+    <button type="submit" class="btn btn-primary">Zapisz</button>
+</form>

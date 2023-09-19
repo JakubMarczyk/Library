@@ -1,0 +1,52 @@
+<h1 class="mb-3">Edytuj książkę</h1>
+<form #form="ngForm" (ngSubmit)="editBook()">
+  <div class="mb-3">
+    <label for="title" class="form-label">Tytuł</label>
+    <input type="text" class="form-control" id="title" [(ngModel)]="book.title" name="title">
+  </div>
+  <div class="mb-3">
+    <label for="title" class="form-label">ISBN</label>
+    <input type="text" class="form-control" id="isbn" [(ngModel)]="book.isbn" name="isbn">
+  </div>
+  <div class="mb-3">
+    <label for="title" class="form-label">Wydawca</label>
+    <input type="text" class="form-control" id="title" [(ngModel)]="book.publisher" name="publisher">
+  </div>
+  <div class="mb-3">
+    <label for="title" class="form-label">Rok wydania</label>
+    <input type="text" class="form-control" id="yearOfPublication" [(ngModel)]="book.yearOfPublication"
+      name="yearOfPublication">
+  </div>
+  <div class="mb-3">
+    <label for="title" class="form-label">Okładka</label>
+    <input type="text" class="form-control" id="cover" [(ngModel)]="book.cover" name="cover">
+  </div>
+  <div class="mb-3">
+    <label for="title" class="form-label">Opis</label>
+    <input type="text" class="form-control" id="description" [(ngModel)]="book.description" name="description">
+  </div>
+  <div class="mb-3">
+    <label for="title" class="form-label">Strony</label>
+    <input type="text" class="form-control" id="pages" [(ngModel)]="book.pages" name="pages">
+  </div>
+  <div class="mb-3">
+    <label for="title" class="form-label">Autorzy</label>
+    <ng-select class="form-control" [items]="authors" bindLabel="firstName" placeholder="Wybierz autorów"
+      appendTo="body" [multiple]="true" name="authors" [(ngModel)]="selectedAuthors" [hideSelected]="true">
+      <ng-template ng-label-tmp let-item="item" let-clear="clear">
+        <span class="ng-value-label">{{ item.firstName }} {{ item.lastName }}</span>
+        <span class="ng-value-icon right" (click)="clear(item)">×</span>
+    </ng-template>
+      <ng-template ng-option-tmp let-item="item">
+        {{ item.firstName }} {{ item.lastName }}
+      </ng-template>
+    </ng-select>
+  </div>
+  <div class="mb-3">
+    <label for="title" class="form-label">Kategorie</label>
+    <ng-select class="form-control" [items]="categories" bindLabel="name" placeholder="Wybierz kategorie"
+      appendTo="body" [multiple]="true" name="categories" [(ngModel)]="selectedCategories" [hideSelected]="true">
+    </ng-select>
+  </div>
+  <button type="submit" class="btn btn-primary">Zapisz</button>
+</form>
