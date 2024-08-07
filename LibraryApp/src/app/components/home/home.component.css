@@ -1,0 +1,42 @@
+.book-container {
+  text-align: center;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  max-height: 100%;
+  min-height: 100%;
+}
+
+.container-fluid .row {
+  margin-bottom: 5px;
+}
+
+.image-container {
+  height: 80%;
+  flex: 1;
+  overflow: hidden;
+}
+
+  .image-container img {
+    max-width: 100%;
+    width: auto;
+    object-fit: cover;
+  }
+
+.title {
+  text-align: center;
+  margin-top: 10px;
+  padding-top: 5px;
+  color: white;
+  max-width: 100%;
+  width: auto;
+  border-top: 1px solid #ccc;
+  overflow: hidden;
+}
+
+.book-link {
+  text-decoration: none;
+  color: #000;
+}
+

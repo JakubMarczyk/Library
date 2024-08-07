@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <h1 class=" mb-3">Książki</h1>
+    <table class="table table-dark table-striped table-bordered" *ngIf="books && books.length > 0">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Tytuł</th>
+                <th>Autorzy</th>
+                <th>Kategorie</th>
+                <th>Wydawca</th>
+                <th>Z roku</th>
+                <th>Opis</th>
+                <th>Strony</th>
+                <th>Akcja</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let book of books">
+                <td>{{book.book_id}}</td>
+                <td>{{book.title}}</td>
+                <td>    
+                    <div *ngFor="let author of book.authors">
+                        {{ author.firstName }} {{ author.lastName }}
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let category of book.categories">
+                        {{ category.name }}
+                    </div>
+                </td>
+                <td>{{book.publisher}}</td>
+                <td>{{book.yearOfPublication}}</td>
+                <td>{{book.description}}</td>
+                <td>{{book.pages}}</td>
+                <td> 
+                  <div class="iconsColumn">
+                    <a [routerLink]="['edit',book.book_id]"><fa-icon [icon]="faPen"></fa-icon></a>
+                    <a [routerLink]="['bookInstances', book.book_id]"><fa-icon [icon]="faBook"></fa-icon></a>
+                    <a class="trash-icon" (click)="deleteBook(book.book_id)"><fa-icon [icon]="faTrash"></fa-icon></a>    
+                  </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p *ngIf="!books || books.length <= 0">Nie znaleziono książek</p>
+</div>

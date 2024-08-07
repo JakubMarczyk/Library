@@ -1,0 +1,60 @@
+<div class="container-fluid">
+  <ng-container *ngIf="book">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Egzemplarze {{ book.title }}</h5>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Biblioteczka</th>
+                  <th>Status</th>
+                  <th>Akcje</th>
+                </tr>
+              </thead>
+              <tbody>
+                <th>Dodaj nowy egzemplarz</th>
+                <tr>
+                  <td style="width:35%"></td>
+                  <td style="width:25%">
+                    <ng-select class="form-control" [items]="bookshelves" bindLabel="name" placeholder="Biblioteczka"
+                               appendTo="body" name="bookshelf" [(ngModel)]="addBookshelf" [hideSelected]="true"></ng-select>
+                  </td>
+
+                  <td style="width:25%">
+                    <ng-select class="form-control" [items]="statuses" bindLabel="name" placeholder="Status"
+                               appendTo="body" name="status" [(ngModel)]="addStatus" [hideSelected]="true"></ng-select>
+                  </td>
+                  <td style="width:15%">
+                    <button class="btn btn-primary" (click)="addBookInstance()">Dodaj</button>
+                  </td>
+                </tr>
+              </tbody>
+                <tbody>
+                  <th>Istniejące egzemplarze</th>
+                  <tr *ngFor="let instance of book.book_instances; let i = index">
+                    <td style="width:35%">{{ instance.book_instance_id }}</td>
+                    <td style="width:25%">
+                      <ng-select class="form-control" [items]="bookshelves" bindLabel="name" placeholder="Biblioteczka"
+                                 appendTo="body" name="bookshelf{{i}}" [(ngModel)]="selectedBookshelf[i]" [hideSelected]="true"></ng-select>
+                    </td>
+
+                    <td style="width:25%">
+                      <ng-select class="form-control" [items]="statuses" bindLabel="name" placeholder="Status"
+                                 appendTo="body" name="status{{i}}" [(ngModel)]="selectedStatus[i]" [hideSelected]="true"></ng-select>
+                    </td>
+                    <td style="width:15%">
+                      <button class="btn btn-primary" style="margin-right: 5px; background-color:red; border-color: black" (click)="delBookInstance(instance)">Usuń</button>
+                      <button class="btn btn-primary" (click)="updateBookInstance(instance, i)">Zapisz</button>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

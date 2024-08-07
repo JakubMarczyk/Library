@@ -1,0 +1,13 @@
+<div class="column">
+    <form #form="ngForm" (ngSubmit)="editAuthor()">
+    <h1 class="mb-3">Dodaj nowego autora</h1>
+    <div class="mb-3">
+      <label for="title" class="form-label">Imię</label>
+      <input type="text" class="form-control" id="firstName" [(ngModel)]="author.firstName" name="firstName">
+    </div>
+    <div class="mb-3">
+      <label for="title" class="form-label">Naziwsko</label>
+      <input type="text" class="form-control" id="lastName" [(ngModel)]="author.lastName" name="lastName">
+    </div>
+    <button type="submit" class="btn btn-primary">Zapisz</button>
+  </form>

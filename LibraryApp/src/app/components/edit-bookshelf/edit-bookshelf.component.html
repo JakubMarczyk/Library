@@ -1,0 +1,13 @@
+<h1 class="mb-3">Edytuj biblioteczkę</h1>
+<form #form="ngForm" (ngSubmit)="editBookshelf()">
+  <div class="mb-3">
+    <label for="title" class="form-label">Nazwa</label>
+    <input type="text" class="form-control" id="name" [(ngModel)]="bookshelf.name" name="name">
+  </div>
+  <div class="mb-3">
+    <label for="title" class="form-label">Piętro</label>
+    <input type="text" class="form-control" id="floor" [(ngModel)]="bookshelf.floor" name="floor">
+  </div>
+  <button type="submit" class="btn btn-primary">Zapisz</button>
+</form>
+

@@ -1,0 +1,60 @@
+<ng-container *ngIf="book">
+  <div class="container-fluid" style="padding-top: 10px;">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card" style="height: 600px;">
+              <img [src]="book.cover ? book.cover : defaultCover" alt="{{book.title}} Cover" style="height: 100%;object-fit: contain;">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card" style="height: 600px;">
+              <div class="card-body">
+                <h5 class="card-title text-center" style="font-size: 24px; padding-bottom:10px;">{{ book.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">ISBN:</h6>
+                <p class="card-text">{{ book.isbn }}</p>
+                <h6 class="card-subtitle mb-2 text-muted">Wydawnictwo:</h6>
+                <p class="card-text">{{ book.publisher }}</p>
+                <h6 class="card-subtitle mb-2 text-muted">Rok publikacji:</h6>
+                <p class="card-text">{{ book.yearOfPublication }}</p>
+                <h6 class="card-subtitle mb-2 text-muted">Ilość stron:</h6>
+                <p class="card-text">{{ book.pages }}</p>
+                <h6 class="card-subtitle mb-2 text-muted">Autorzy:</h6>
+                <ul class="list-unstyled">
+                  <li *ngFor="let author of book.authors">{{ author.firstName }} {{ author.lastName }}</li>
+                </ul>
+                <h6 class="card-subtitle mb-2 text-muted">Kategorie:</h6>
+                <ul class="list-unstyled">
+                  <li *ngFor="let category of book.categories">{{ category.name }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card" style="height: 600px;">
+              <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Opis:</h6>
+                <p class="card-text">{{ book.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-body">
+                Termin oddania: {{ book.returnTime | date: 'shortDate' }}
+                <button class="btn btn-primary" style="margin:5px; margin-top:2px"(click)="extendReturnTime()" [disabled]="book.extended">Przedłuż termin oddania</button>
+                <button class="btn btn-primary" style="margin:5px; margin-top:2px" (click)="generateQRCode()">Przekaż książkę</button>
+                <div *ngIf="showQRCode" class="mt-3">
+                  <qrcode [qrdata]="qrData" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </ng-container>

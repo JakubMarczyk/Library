@@ -1,0 +1,61 @@
+<ng-container *ngIf="book">
+  <div class="container-fluid" style="padding-top: 10px;">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card" style="height: 600px;">
+              <img [src]="book.cover ? book.cover : defaultCover" alt="{{book.title}} Cover" style="height: 100%;object-fit: contain;">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card" style="height: 600px;">
+              <div class="card-body">
+                <h5 class="card-title text-center" style="font-size: 24px; padding-bottom:10px;">{{ book.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">ISBN:</h6>
+                <p class="card-text">{{ book.isbn }}</p>
+                <h6 class="card-subtitle mb-2 text-muted">Wydawnictwo:</h6>
+                <p class="card-text">{{ book.publisher }}</p>
+                <h6 class="card-subtitle mb-2 text-muted">Rok publikacji:</h6>
+                <p class="card-text">{{ book.yearOfPublication }}</p>
+                <h6 class="card-subtitle mb-2 text-muted">Ilość stron:</h6>
+                <p class="card-text">{{ book.pages }}</p>
+                <h6 class="card-subtitle mb-2 text-muted">Autorzy:</h6>
+                <ul class="list-unstyled">
+                  <li *ngFor="let author of book.authors">{{ author.firstName }} {{ author.lastName }}</li>
+                </ul>
+                <h6 class="card-subtitle mb-2 text-muted">Kategorie:</h6>
+                <ul class="list-unstyled">
+                  <li *ngFor="let category of book.categories">{{ category.name }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card" style="height: 600px;">
+              <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Opis:</h6>
+                <p class="card-text">{{ book.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Dostępne egzemplarze:</h6>
+                <ul class="list-unstyled">
+                  <ng-container *ngFor="let instance of book.book_instances">
+                    <li *ngIf="instance.status.status_id === 1">{{ instance.bookshelf.name }} na piętrze {{ instance.bookshelf.floor }}</li>
+                  </ng-container>
+                  <li *ngIf="!book.book_instances || !hasAvailableInstances()">Brak dostępnych egzemplarzy</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </ng-container>

@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <h1 class=" mb-3">Biblioteczki</h1>
+  <table class="table table-dark table-striped table-bordered" *ngIf="bookshelves && bookshelves.length > 0">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nazwa</th>
+        <th>Piętro</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bookshelf of bookshelves">
+        <td>{{bookshelf.bookshelf_id}}</td>
+        <td>{{bookshelf.name}}</td>
+        <td>{{bookshelf.floor}}</td>
+        <td class="iconsColumn">
+          <a [routerLink]="['edit',bookshelf.bookshelf_id]"><fa-icon [icon]="faPen"></fa-icon></a>
+          <a class="trash-icon" (click)="deleteBookshelf(bookshelf.bookshelf_id)"><fa-icon [icon]="faTrash"></fa-icon></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p *ngIf="!bookshelves || bookshelves.length <= 0">Nie znaleziono biblioteczek</p>
+</div>

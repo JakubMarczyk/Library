@@ -1,0 +1,25 @@
+.scanner-container {
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.messages-cointainer {
+}
+
+.scanner {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.mode-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+  .mode-buttons .btn {
+    flex: 1;
+    width: 25%;
+    margin: 5px;
+  }

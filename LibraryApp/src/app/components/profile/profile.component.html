@@ -1,0 +1,30 @@
+<div class="profile-container" *ngIf="user">
+  <h2>Profil użytkownika</h2>
+
+  <div class="profile-details">
+    <label for="nickname">Nickname:</label>
+    <input type="text" id="nickname" [value]="user.nickname" readonly>
+
+    <label for="email">Email:</label>
+    <input type="text" id="email" [value]="user.email" readonly>
+  </div>
+
+  <div class="password-change">
+    <h3>Zmiana hasła</h3>
+    <label for="current-password">Current Password:</label>
+    <input type="password" id="current-password" [(ngModel)]="currentPassword">
+
+    <label for="new-password">New Password:</label>
+    <input type="password" id="new-password" [(ngModel)]="newPassword">
+
+    <button (click)="changePassword()">Zmień hasło</button>
+  </div>
+
+  <div class="delete-account">
+    <h3>Usuwanie konta</h3>
+    <label for="delete-password">Hasło:</label>
+    <input type="password" id="delete-password" [(ngModel)]="deletePassword">
+
+    <button (click)="deleteAccount()">Usuń konto</button>
+  </div>
+</div>

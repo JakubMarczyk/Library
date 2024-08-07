@@ -1,0 +1,100 @@
+<div class="container-fluid">
+    <div class="row" style="margin-top: 2px">
+          <div class="column">
+        <h1 class="mb-3">Dodaj nową książkę</h1>
+        <form #form="ngForm" (ngSubmit)="addBook()" class="mb-4">
+          <div class="mb-3">
+            <label for="title" class="form-label">Tytuł</label>
+            <input type="text" class="form-control" id="title" [(ngModel)]="book.title" name="title">
+          </div>
+          <div class="mb-3">
+            <label for="title" class="form-label">ISBN</label>
+            <input type="text" class="form-control" id="isbn" [(ngModel)]="book.isbn" name="isbn">
+          </div>
+          <div class="mb-3">
+            <label for="title" class="form-label">Wydawca</label>
+            <input type="text" class="form-control" id="title" [(ngModel)]="book.publisher" name="publisher">
+          </div>
+          <div class="mb-3">
+            <label for="title" class="form-label">Rok wydania</label>
+            <input type="text" class="form-control" id="yearOfPublication" [(ngModel)]="book.yearOfPublication"
+              name="yearOfPublication">
+          </div>
+          <div class="mb-3">
+            <label for="title" class="form-label">Okładka</label>
+            <input type="text" class="form-control" id="cover" [(ngModel)]="book.cover" name="cover">
+          </div>
+          <div class="mb-3">
+            <label for="title" class="form-label">Opis</label>
+            <input type="text" class="form-control" id="description" [(ngModel)]="book.description" name="description">
+          </div>
+          <div class="mb-3">
+            <label for="title" class="form-label">Strony</label>
+            <input type="text" class="form-control" id="pages" [(ngModel)]="book.pages" name="pages">
+          </div>
+          <div class="mb-3">
+            <label for="title" class="form-label">Autorzy</label>
+            <ng-select class="form-control" [items]="authors" bindLabel="firstName" placeholder="Wybierz autorów"
+              appendTo="body" [multiple]="true" name="authors" [(ngModel)]="selectedAuthors" [hideSelected]="true">
+              <ng-template ng-label-tmp let-item="item" let-clear="clear">
+                <span class="ng-value-label">{{ item.firstName }} {{ item.lastName }}</span>
+                <span class="ng-value-icon right" (click)="clear(item)">×</span>
+              </ng-template>
+              <ng-template ng-option-tmp let-item="item">
+                {{ item.firstName }} {{ item.lastName }}
+              </ng-template>
+            </ng-select>
+          </div>
+          <div class="mb-3">
+            <label for="title" class="form-label">Kategorie</label>
+            <ng-select class="form-control" [items]="categories" bindLabel="name" placeholder="Wybierz kategorie"
+              appendTo="body" [multiple]="true" name="categories" [(ngModel)]="selectedCategories" [hideSelected]="true">
+            </ng-select>
+          </div>
+          <button type="submit" class="btn btn-primary">Dodaj książkę</button>
+        </form>
+      </div>
+  
+  
+          <div class="column">
+            <form #form="ngForm" (ngSubmit)="addAuthor()" class="mb-4">
+              <h1 class="mb-3">Dodaj nowego autora</h1>
+              <div class="mb-3">
+                <label for="title" class="form-label">Imię</label>
+                <input type="text" class="form-control" id="firstName" [(ngModel)]="newAuthor.firstName" name="firstName">
+              </div>
+              <div class="mb-3">
+                <label for="title" class="form-label">Naziwsko</label>
+                <input type="text" class="form-control" id="lastName" [(ngModel)]="newAuthor.lastName" name="lastName">
+              </div>
+              <button type="submit" class="btn btn-primary">Dodaj autora</button>
+            </form>
+
+
+            <form #form="ngForm" (ngSubmit)="addCategory()" class="mb-4">
+              <h1 class="mb-3">Dodaj nową kategorię</h1>
+              <div class="mb-3">
+                <label for="title" class="form-label">Nazwa</label>
+                <input type="text" class="form-control" id="name" [(ngModel)]="newCategory.name" name="name">
+              </div>
+              <div class="mb-3">
+                <label for="title" class="form-label">Zdjęcie</label>
+                <input type="text" class="form-control" id="image" [(ngModel)]="newCategory.image" name="image">
+              </div>
+              <button type="submit" class="btn btn-primary">Dodaj kategorię</button>
+            </form>
+
+            <form #form="ngForm" (ngSubmit)="addBookshelf()" class="mb-4">
+              <h1 class="mb-3">Dodaj nową biblioteczkę</h1>
+              <div class="mb-3">
+                <label for="title" class="form-label">Nazwa</label>
+                <input type="text" class="form-control" id="name" [(ngModel)]="bookshelf.name" name="name">
+              </div>
+              <div class="mb-3">
+                <label for="title" class="form-label">Piętro</label>
+                <input type="text" class="form-control" id="floor" [(ngModel)]="bookshelf.floor" name="floor">
+              </div>
+              <button type="submit" class="btn btn-primary">Dodaj biblioteczkę</button>
+            </form>
+          </div>
+  </div>

@@ -1,0 +1,72 @@
+<nav class="navbar d-flex flex-nowrap" style="width: 100%" data-bs-theme="dark">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" *ngIf="getRole() !== 'Admin'" [routerLink]="['/']"> <fa-icon [icon]="faHome"></fa-icon></a>
+    <a class="navbar-brand" *ngIf="getRole() === 'Admin'" [routerLink]="['/books']"> <fa-icon [icon]="faHome"></fa-icon></a>
+
+    <form #form="ngForm" (ngSubmit)="searchBooks()" class="position-relative">
+      <input class="form-control me-2" type="search" placeholder="Wyszukaj" name="searchedText" [(ngModel)]="searchedText" (input)="searchBooks()">
+      <div class="position-absolute w-100" *ngIf="isSearchFocused && books.length > 0">
+        <div class="dropdown">
+          <ul class="dropdown-menu show" aria-labelledby="dropdownMenuButton">
+            <li *ngFor="let book of books" class="dropdown-item" [routerLink]="getRole() !== 'Admin' ? ['/book', book.book_id] : ['/books/edit', book.book_id]">
+              <img [src]="book.cover ? book.cover : defaultCover" alt="Book Cover" width="30" height="40" class="me-2">
+              <a class="navbar-brand" *ngIf="getRole() !== 'Admin'" [routerLink]="['/book', book.book_id]">{{ book.title }}</a>
+              <a class="navbar-brand" *ngIf="getRole() === 'Admin'" [routerLink]="['/books/edit', book.book_id]">{{ book.title }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </form>
+
+    <a class="navbar-brand" style="padding-left: 10px" [routerLink]="['/QRscanner']"> <fa-icon [icon]="faQrcode"></fa-icon></a>
+    <!--<a class="navbar-brand" [routerLink]="['/chatBot']"> <fa-icon [icon]="faChat"></fa-icon></a>-->
+
+
+    <a *ngIf="getRole() === 'Admin' && isUserLogged()" class="navbar-brand" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <fa-icon [icon]="faList"></fa-icon>
+    </a>
+    <ul *ngIf="getRole() === 'Admin'" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+      <li>
+        <a class="dropdown-item" [routerLink]="['/books']">Zarządzaj książkami</a>
+      </li>
+      <li>
+        <a class="dropdown-item" [routerLink]="['/authors']">Zarządzaj autorami</a>
+      </li>
+      <li>
+        <a class="dropdown-item" [routerLink]="['/categories']">Zarządzaj kategoriami</a>
+      </li>
+      <li>
+        <a class="dropdown-item" [routerLink]="['/bookshelves']">Zarządzaj biblioteczkami</a>
+      </li>
+      <li>
+        <a class="dropdown-item" [routerLink]="['/addNew']">Dodaj nowe</a>
+      </li>
+    </ul>
+    
+        <a *ngIf="isUserLogged()" class="navbar-brand" href="#" id="loggedNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <fa-icon [icon]="faUser"></fa-icon>
+        </a>
+        <ul *ngIf="isUserLogged()" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <li>
+            <a class="dropdown-item" [routerLink]="['/profile']">Wyświetl profil</a>
+          </li>
+          <li>
+            <a class="dropdown-item" (click)="logout()">Wyloguj się</a>
+          </li>
+        </ul>
+
+        <a *ngIf="!isUserLogged()" class="navbar-brand" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <fa-icon [icon]="faUser"></fa-icon>
+        </a>
+        <ul *ngIf="!isUserLogged()" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <li>
+            <a class="dropdown-item" [routerLink]="['/login']">Zaloguj się</a>
+          </li>
+          <li>
+            <a class="dropdown-item" [routerLink]="['/register']">Zarejestruj się</a>
+          </li>
+        </ul>
+
+  </div>
+</nav>

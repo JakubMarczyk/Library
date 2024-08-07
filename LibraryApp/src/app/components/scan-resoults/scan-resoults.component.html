@@ -1,0 +1,21 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <h2 *ngIf="type === 'bookshelf'">Książki w {{bookshelfName}}</h2>
+      <h2 *ngIf="type === 'category'">Książki z kategorii {{categoryName}}</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div *ngFor="let book of books" class="col-3 col-md-2">
+      <a [routerLink]="['/book', book.book_id]" class="book-link">
+        <div class="book-container">
+          <div class="image-container">
+            <img class="img-fluid" [src]="book.cover ? book.cover : defaultCover" alt="{{book.title}} Cover">
+          </div>
+          <div class="title">{{book.title}}</div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <p *ngIf="!books || books.length <= 0">Nie znaleziono książek</p>
+</div>

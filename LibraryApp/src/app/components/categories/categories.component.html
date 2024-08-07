@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <h1 class=" mb-3">Kategorie</h1>
+    <table class="table table-dark table-striped table-bordered" *ngIf="categories && categories.length > 0">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nazwa</th>
+                <th>Zdjęcie</th>
+                <th>Akcja</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let category of categories">
+                <td>{{category.category_id}}</td>
+                <td>{{category.name}}</td>
+                <td><a href={{category.image}}>{{category.image}}</a></td>
+                <td class="iconsColumn"><a [routerLink]="['edit',category.category_id]" ><fa-icon [icon]="faPen"></fa-icon></a>
+                    <a class="trash-icon" (click)="deleteCategory(category.category_id)"><fa-icon [icon]="faTrash"></fa-icon></a>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    <p *ngIf="!categories || categories.length <= 0">Nie znaleziono kategorii</p>
+</div>
