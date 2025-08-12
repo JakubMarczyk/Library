@@ -5,7 +5,7 @@ Aplikacja służy do zarządzania biblioteką i ułatwienia użytkownikom korzys
 Pozwala na obsługę wypożyczeń, przeglądanie książek, sprawdzanie dostępności oraz korzystanie z technologii **kodów QR** w celu szybkiego wypożyczania, zwrotu lub przekazania książek innym użytkownikom.
 
 Projekt zawiera dwa interfejsy:
-- **Administrator** – zarządzanie bazą danych, książkami, autorami, kategoriami, półkami oraz generowanie kodów QR.
+- **Administrator** – zarządzanie bazą danych, książkami, autorami, kategoriami, półkami.
 - **Użytkownik** – wyszukiwanie książek, sprawdzanie dostępności, interakcja z chatbotem, wypożyczanie i zwroty poprzez skanowanie kodów QR.
 
 ---
