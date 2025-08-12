@@ -32,6 +32,9 @@
               <span class="ng-value-label">{{ item.firstName }} {{ item.lastName }}</span>
               <span class="ng-value-icon right" (click)="clear(item)">×</span>
             </ng-template>
+            <ng-template ng-option-tmp let-item="item">
+              {{ item.firstName }} {{ item.lastName }}
+            </ng-template>
           </ng-select>
         </div>
         <div class="form-group">

@@ -32,11 +32,14 @@
   <div class="mb-3">
     <label for="title" class="form-label">Autorzy</label>
     <ng-select class="form-control" [items]="authors" bindLabel="firstName" placeholder="Wybierz autorów"
-      appendTo="body" [multiple]="true" name="authors" [(ngModel)]="selectedAuthors" [hideSelected]="true">
+               appendTo="body" [multiple]="true" name="authors" [(ngModel)]="selectedAuthors" [hideSelected]="true">
       <ng-template ng-label-tmp let-item="item" let-clear="clear">
         <span class="ng-value-label">{{ item.firstName }} {{ item.lastName }}</span>
         <span class="ng-value-icon right" (click)="clear(item)">×</span>
-    </ng-template>
+      </ng-template>
+      <ng-template ng-option-tmp let-item="item">
+        {{ item.firstName }} {{ item.lastName }}
+      </ng-template>
       <ng-template ng-option-tmp let-item="item">
         {{ item.firstName }} {{ item.lastName }}
       </ng-template>

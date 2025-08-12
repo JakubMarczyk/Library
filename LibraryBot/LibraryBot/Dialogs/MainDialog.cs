@@ -75,36 +75,28 @@ public class MainDialog : ComponentDialog
         }
         else
         {
-            await stepContext.Context.SendActivityAsync("Niestety, nie znalazłem żadnych książek pasujących do Twojego zapytania.");
+            await stepContext.Context.SendActivityAsync("Niestety, nie znalazłem żadnych książek pasujących do Twojego zapytania." +searchedText);
         }
 
-        // Proceed to the next step
         return await stepContext.NextAsync(null, cancellationToken);
     }
 
     private async Task<List<BookDto>> CallSearchBooksApi(string searchedText)
     {
-        // Adres Twojego API
-        string apiUrl = "https://localhost:7299/api/Books/Search/";
-
+        string apiUrl = "https://192.168.1.20:7299/api/books/search/";
         try
         {
-            // Utwórz klienta HTTP
             using (HttpClient client = new HttpClient())
             {
-                // Ustaw nagłówki, jeśli potrzebne
-                // client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "your-access-token");
+                
+                Console.WriteLine(apiUrl + searchedText);
 
-                // Wyślij zapytanie GET do Twojego API
                 HttpResponseMessage response = await client.GetAsync(apiUrl + searchedText);
 
-                // Sprawdź, czy odpowiedź jest sukcesem
                 if (response.IsSuccessStatusCode)
                 {
-                    // Odczytaj zawartość odpowiedzi jako ciąg znaków
                     string jsonContent = await response.Content.ReadAsStringAsync();
                     Console.WriteLine(apiUrl + searchedText);
-                    // Deserializuj JSON na listę książek
                     List<BookDto> books = JsonSerializer.Deserialize<List<BookDto>>(jsonContent);
 
                     return books;
